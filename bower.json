@@ -1,0 +1,22 @@
+{
+  "name": "neurons-express",
+  "version": "0.0.1",
+  "homepage": "https://github.com/platdesign/neurons-express",
+  "authors": [
+    "platdesign"
+  ],
+  "description": "json-api-module for neurons",
+  "main": "module.php",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies":{
+	  "neurons":"*"
+  }
+}
