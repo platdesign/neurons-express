@@ -12,6 +12,8 @@ A json-api-module for [Neurons](https://github.com/platdesign/Neurons).
 Equivalent to neurons-router ($routeProvider) the expressProvider allows to
 define route-handlers for different request-methods: `get`, `post`, `put`, `delete` and `all`.
 
+ATTENTION: It's not necessary to send the respond-body-content to the $response-service. Simply return your data in the closure.
+
 The following example takes effect for all request-methods.
 
 ####get($route, $closure)####
