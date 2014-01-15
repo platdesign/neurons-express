@@ -60,7 +60,7 @@
 				$this->res->setCode(isset($response->error->code) ? $response->error->code : 400);
 			}
 			
-			$this->res->setBody(json_encode($response));
+			$this->res->setBody(json_encode($response, JSON_NUMERIC_CHECK));
 		}
 	
 		public function error($message, $code=400, $description=null) {
