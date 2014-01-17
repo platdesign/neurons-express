@@ -54,10 +54,9 @@
 			
 			try {
 				$response = $this->injectionProvider->invoke($dataClosure->bindTo($this));
-				$this->res->setCode(200);
-			} catch(\Exception $e) {
+			} catch(\Exception $e) { 
 				$response = $this->handleException($e);
-				$this->res->setCode(isset($response->error->code) ? $response->error->code : 400);
+				$this->res->setCode($response->error->code);
 			}
 			
 			$this->res->setBody(json_encode($response, JSON_NUMERIC_CHECK));
@@ -69,9 +68,11 @@
 
 		public function createErrorObject($error) {
 			
+			$code = ($error->getCode()!==0) ? $error->getCode() : $this->res->getCode();
+
 			return (object) [
 				'error'	=>	(object) [
-					'code'			=>	$error->getCode(),
+					'code'			=>	$code,
 					'message'		=>	$error->getMessage(),
 					'description'	=>	method_exists($error, 'getDesc') ? $error->getDesc() : null
 				]
@@ -92,6 +93,8 @@
 			
 			if( isset($this->exceptionHandlers[$name]) && $handler = $this->exceptionHandlers[get_class($error)] ) {
 				return $this->injectionProvider->invoke($handler->bindTo($this), ['error'=>$error]);
+			} else {
+				throw $error;
 			}
 		}
 	
