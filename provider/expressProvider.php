@@ -53,7 +53,7 @@
 			$this->res->ContentType('JSON');
 			
 			try {
-				$response = $this->injectionProvider->invoke($dataClosure->bindTo($this));
+				$response = $this->injectionProvider->invoke($dataClosure);
 			} catch(\Exception $e) { 
 				$response = $this->handleException($e);
 				$this->res->setCode($response->error->code);
